@@ -8,9 +8,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "P.R.A.M.A.A.N — BIS Standards & Compliance AI Platform",
+  title: "D.A.R.P.A.N — Digital Advanced Recommendation for Procurement and Allied Norms",
   description:
-    "Platform for Regulatory And Marking Authenticity Across Nation. Verify BIS standards, audit product compliance, calculate fees, and navigate Indian certification.",
+    "D.A.R.P.A.N: Digital Advanced Recommendation for Procurement and Allied Norms. Identify applicable Indian Standards, allied references, mandatory certifications, testing laboratories, and procurement requirements.",
 };
 
 export const viewport = {
@@ -25,7 +25,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col font-(family-name:--font-inter) antialiased bg-[#f8fafc] dark:bg-[#0b0f19] dark:text-[#f8fafc] transition-colors duration-200">
+      <body className="min-h-full flex flex-col font-(family-name:--font-inter) antialiased transition-colors duration-200">
         <ThemeProvider>
           {children}
         </ThemeProvider>

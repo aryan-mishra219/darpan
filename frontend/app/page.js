@@ -79,13 +79,13 @@ function SIHEvaluatorModal({ isOpen, onClose }) {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-white text-[10px] font-bold uppercase tracking-wider mb-2 border border-white/20">
-                  <span>🏆</span> Smart India Hackathon (SIH) — Evaluator & Selector Guide
+                  <span className="text-amber-300">{Icons.shield}</span> Smart India Hackathon (SIH) — Problem Statement
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
-                  Data Authenticity & Technical Architecture Notice
+                  AI-Powered Recommendation Engine for Applicable Indian Standards in Procurement
                 </h3>
                 <p className="text-xs text-blue-100 mt-1 leading-relaxed">
-                  Key transparency details for jury members, evaluators, and reviewers before testing P.R.A.M.A.A.N.
+                  D.A.R.P.A.N identifies applicable Indian Standards (IS), normative references, latest amendments, and generates technical tender clauses for procurement officials.
                 </p>
               </div>
               <button
@@ -126,32 +126,32 @@ function SIHEvaluatorModal({ isOpen, onClose }) {
             <div className="space-y-2">
               <h4 className="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
                 <span className="text-[#0055A4] dark:text-sky-400">{Icons.zap}</span>
-                <span>Highlights & Innovations Built into this Demo</span>
+                <span>Core Capabilities Matching SIH Problem Statement</span>
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">📸 Vision OCR Spec Audit</span>
-                  <span className="text-slate-500 dark:text-slate-400">Extracts label chemical compositions & tolerance bounds via multi-modal vision.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.search} AI Standards Recommendation</span>
+                  <span className="text-slate-500 dark:text-slate-400">Semantic similarity search across 1,805+ IS codes with relevance scoring.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">🛡️ Compliance Gap Analyzer</span>
-                  <span className="text-slate-500 dark:text-slate-400">Identifies missing licenses, calculates MSME fee rebates, and generates downloadable PDF reports.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.globe} Normative & Allied Standards Graph</span>
+                  <span className="text-slate-500 dark:text-slate-400">Identifies reference test methods, material specs, and safety standards.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">🔍 Live 6-Digit HUID Verifier</span>
-                  <span className="text-slate-500 dark:text-slate-400">Validates gold & silver hallmarking records against AHC centers.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.file} Tender Specification Generator</span>
+                  <span className="text-slate-500 dark:text-slate-400">Synthesizes ready-to-use tender specification clauses and pre-qualification criteria.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">🗺️ ILMS Testing Lab Locator</span>
-                  <span className="text-slate-500 dark:text-slate-400">Interactive geospatial map matching product scope to accredited testing laboratories.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.brain} Procurement Advisory Chatbot</span>
+                  <span className="text-slate-500 dark:text-slate-400">Conversational AI assistant for procurement officers drafting technical bids and GeM specs.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">🧠 Claude-Style Reasoning</span>
-                  <span className="text-slate-500 dark:text-slate-400">Clickable thought process showing verified steps taken behind the scenes.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.doc} Formal PDF Procurement Report</span>
+                  <span className="text-slate-500 dark:text-slate-400">One-click downloadable technical evaluation report for tender documentation.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
-                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5">🌐 Multilingual & ELI5</span>
-                  <span className="text-slate-500 dark:text-slate-400">Translates complex standards into English, Hindi, Tamil, Bengali & simple 5th-grade analogies.</span>
+                  <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.globe} Multilingual Procurement Support</span>
+                  <span className="text-slate-500 dark:text-slate-400">Full multilingual query and output support in English, Hindi, Tamil, and Bengali.</span>
                 </div>
               </div>
             </div>
@@ -173,7 +173,7 @@ function SIHEvaluatorModal({ isOpen, onClose }) {
               onClick={handleClose}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0055A4] hover:bg-[#004080] dark:bg-sky-600 dark:hover:bg-sky-500 text-white rounded-xl text-xs font-semibold shadow-md transition-colors cursor-pointer"
             >
-              <span>Explore P.R.A.M.A.A.N Demo</span>
+              <span>Explore D.A.R.P.A.N Platform</span>
               <span>→</span>
             </button>
           </div>
@@ -419,10 +419,10 @@ function ActiveThinkingCard({ lastQuery = "", hasImage = false }) {
 
 /* ─── Data ─── */
 const strategyPortals = [
-  { icon: Icons.calculator, label: "Fee Estimator (MSME)", id: "fee" },
-  { icon: Icons.search, label: "Standard Search (IS Directory)", id: "search" },
-  { icon: Icons.shield, label: "Hallmark Verifier (HUID)", id: "hallmark" },
-  { icon: Icons.building, label: "Lab Locator (ILMS)", id: "lab" },
+  { icon: Icons.file, label: "Tender Clause Drafter", id: "tender_drafter" },
+  { icon: Icons.search, label: "Normative Standards Explorer", id: "search" },
+  { icon: Icons.shield, label: "QCO & Mandatory Certifications", id: "qco_registry" },
+  { icon: Icons.calculator, label: "Procurement Testing & Fee Schedule", id: "fee" },
 ];
 
 
@@ -605,11 +605,11 @@ const productSectors = [
 ];
 
 const actionTabs = [
-  { icon: Icons.flask, label: "Lab Test" },
-  { icon: Icons.doc, label: "BIS Audit" },
-  { icon: Icons.shield, label: "ISI Mark" },
-  { icon: Icons.shield, label: "Hallmark" },
-  { icon: Icons.file, label: "QCO" },
+  { icon: Icons.file, label: "Tender Clauses" },
+  { icon: Icons.search, label: "Normative Standards" },
+  { icon: Icons.shield, label: "QCO Check" },
+  { icon: Icons.doc, label: "GeM Specs" },
+  { icon: Icons.flask, label: "Test Methods" },
 ];
 
 /* ─── Markdown Renderers ─── */
@@ -626,6 +626,270 @@ const mdComponents = {
 };
 
 /* ════════════════════════════════════════════════════════════════════ */
+
+/* ─── D.A.R.P.A.N: Procurement Recommendation Card Components ─── */
+function ScoreBar({ score }) {
+  const pct = Math.round((score || 0) * 100);
+  const color = pct >= 80 ? "#059669" : pct >= 60 ? "#0055A4" : "#d97706";
+  return (
+    <div className="mt-2">
+      <div className="flex items-center justify-between mb-0.5">
+        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Relevance</span>
+        <span className="text-[11px] font-bold" style={{ color }}>{pct}%</span>
+      </div>
+      <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div
+          className="h-full rounded-full score-bar-fill"
+          style={{ "--bar-width": `${pct}%`, width: `${pct}%`, background: color }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function CertChip({ cert }) {
+  const isMandatory = cert && cert !== "None" && cert !== "";
+  return (
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] font-semibold ${
+      isMandatory ? "cert-chip-mandatory" : "cert-chip-none"
+    }`}>
+      <span aria-hidden="true">{isMandatory ? Icons.alert : Icons.check}</span> {isMandatory ? cert : "No mandatory cert"}
+    </span>
+  );
+}
+
+function CategoryBadge({ cat }) {
+  const map = {
+    "Test Method": "badge-test",
+    "Safety": "badge-safety",
+    "Installation": "badge-install",
+    "Terminology": "badge-terminology",
+    "Allied": "badge-allied",
+    "Related Product": "badge-allied",
+  };
+  const cls = map[cat] || "badge-primary";
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide ${cls}`}>
+      {cat || "Primary"}
+    </span>
+  );
+}
+
+function VersionBadge({ status, year }) {
+  const cls = status === "Superseded" ? "version-superseded" : status === "Amended" ? "version-amended" : "version-latest";
+  return (
+    <span className={`text-[10px] ${cls}`}>
+      {status === "Latest" ? "Latest" : status === "Amended" ? `Amended ${year || ""}` : "Superseded"}
+    </span>
+  );
+}
+
+function PrimaryStandardCard({ std, index }) {
+  const [copied, setCopied] = useState(false);
+  const copyCode = () => {
+    navigator.clipboard.writeText(std.is_code || "");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+  return (
+    <div
+      className="std-card std-primary-card bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-xl p-4 slide-in-card"
+      style={{ animationDelay: `${index * 0.07}s` }}
+    >
+      <div className="flex items-start justify-between gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[11px] font-black text-[#0055A4] dark:text-sky-400 bg-blue-50 dark:bg-blue-950/50 px-2.5 py-1 rounded-lg border border-blue-200 dark:border-blue-900 tracking-wide font-mono">
+            {std.is_code || "IS ???"}
+          </span>
+          {std.version_status && <VersionBadge status={std.version_status} year={std.latest_year} />}
+        </div>
+        <button
+          onClick={copyCode}
+          className="text-[10px] text-slate-400 hover:text-[#0055A4] dark:hover:text-sky-400 transition-colors flex items-center gap-1 cursor-pointer"
+        >
+          {copied ? "✓ Copied" : "Copy IS#"}
+        </button>
+      </div>
+      <h4 className="mt-2 text-[13px] font-semibold text-slate-800 dark:text-slate-100 leading-snug">{std.title}</h4>
+      {std.scope && <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">{std.scope}</p>}
+      {std.relevance_reason && (
+        <p className="mt-2 text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed border-l-2 border-blue-300 dark:border-blue-700 pl-2.5">
+          {std.relevance_reason}
+        </p>
+      )}
+      <div className="mt-3 flex items-center gap-2 flex-wrap">
+        <CertChip cert={std.certification_required} />
+        {std.allied_standards?.length > 0 && (
+          <span className="text-[10px] text-slate-400 dark:text-slate-500">
+            + {std.allied_standards.length} normative ref{std.allied_standards.length > 1 ? "s" : ""}
+          </span>
+        )}
+      </div>
+      <ScoreBar score={std.relevance_score} />
+    </div>
+  );
+}
+
+function AlliedStandardCard({ std, index }) {
+  return (
+    <div
+      className="std-card std-allied-card bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 slide-in-card"
+      style={{ animationDelay: `${index * 0.05}s` }}
+    >
+      <div className="flex items-start gap-2 flex-wrap">
+        <span className="text-[10.5px] font-black text-violet-700 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/50 px-2 py-0.5 rounded font-mono border border-violet-200 dark:border-violet-900">
+          {std.is_code}
+        </span>
+        <CategoryBadge cat={std.category} />
+      </div>
+      <p className="mt-1.5 text-[12px] font-medium text-slate-700 dark:text-slate-200 leading-snug">{std.title}</p>
+      {std.relevance_reason && (
+        <p className="mt-1 text-[10.5px] text-slate-500 dark:text-slate-400">{std.relevance_reason}</p>
+      )}
+    </div>
+  );
+}
+
+function TenderClausePanel({ clauses }) {
+  const [copiedIdx, setCopiedIdx] = useState(null);
+  if (!clauses || clauses.length === 0) return null;
+  const copyClause = (text, idx) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIdx(idx);
+    setTimeout(() => setCopiedIdx(null), 1500);
+  };
+  return (
+    <div className="bg-linear-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border border-amber-200 dark:border-amber-800/50 rounded-xl p-4">
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-amber-600 dark:text-amber-400">{Icons.file}</span>
+        <h4 className="text-[12px] font-bold text-amber-900 dark:text-amber-200 uppercase tracking-wide">Suggested Tender Specification Clauses</h4>
+      </div>
+      <div className="space-y-2">
+        {clauses.map((clause, i) => (
+          <div key={i} className="tender-clause-item group flex items-start gap-2.5 p-2.5 rounded-lg bg-white/80 dark:bg-slate-900/50 border border-amber-100 dark:border-amber-900/40">
+            <span className="text-[11px] font-bold text-amber-700 dark:text-amber-400 shrink-0 mt-0.5 w-4 text-center">{i + 1}.</span>
+            <p className="text-[11.5px] text-slate-700 dark:text-slate-200 leading-relaxed flex-1">{clause}</p>
+            <button
+              onClick={() => copyClause(clause, i)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] text-slate-400 hover:text-[#0055A4] dark:hover:text-sky-400 shrink-0 cursor-pointer font-medium"
+            >
+              {copiedIdx === i ? "✓" : "Copy"}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProcurementThinkingCard({ query }) {
+  const [stage, setStage] = useState(0);
+  const stages = [
+    { title: "Parsing procurement specification...", detail: "Extracting product domain & use-case" },
+    { title: "Running semantic search across BIS catalog...", detail: "Finding relevant IS codes via embeddings" },
+    { title: "Cross-referencing allied & normative standards...", detail: "Identifying test methods & safety refs" },
+    { title: "Checking version status & amendments...", detail: "Validating latest publication year" },
+    { title: "Mapping certification requirements...", detail: "ISI Mark / CRS / Hallmarking check" },
+    { title: "Generating tender clauses...", detail: "Drafting ready-to-use specification text" },
+  ];
+  useEffect(() => {
+    const t = setInterval(() => setStage(p => (p + 1) % stages.length), 1600);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div className="flex gap-3 justify-start w-full">
+      <div className="w-8 h-8 rounded-lg bg-linear-to-br from-[#0055A4] to-violet-600 flex items-center justify-center shrink-0 mt-1 shadow-md">
+        <img src="/bis-logo.png" alt="BIS" className="w-5 h-5 object-contain radar-spin" />
+      </div>
+      <div className="flex-1 bg-white dark:bg-[#111827] border border-blue-200/70 dark:border-blue-900/50 rounded-2xl rounded-tl-sm p-4 shadow-xs">
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#0055A4] via-violet-500 to-sky-400 rounded-t-xl" />
+        <div className="flex items-center gap-2 mb-3">
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute h-full w-full rounded-full bg-blue-400 opacity-75" />
+            <span className="relative rounded-full h-2 w-2 bg-blue-500" />
+          </span>
+          <span className="text-[11px] font-bold tracking-wider uppercase text-blue-700 dark:text-sky-400">D.A.R.P.A.N is analyzing standards...</span>
+        </div>
+        <div className="p-3 bg-slate-50 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 rounded-xl">
+          <motion.div key={stage} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+            <h4 className="text-xs font-semibold text-gray-900 dark:text-white">{stages[stage].title}</h4>
+            <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5">{stages[stage].detail}</p>
+          </motion.div>
+        </div>
+        <div className="mt-2.5 flex gap-1.5 flex-wrap">
+          {["Semantic Search", "Version Check", "Allied Standards", "Tender Clauses"].map((s, i) => (
+            <span key={s} className={`text-[10px] px-2 py-0.5 rounded font-medium border transition-all duration-500 ${
+              i <= stage % 4 ? "bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800" : "text-slate-400 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+            }`}>{s}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProcurementResults({ result, onDownloadPdf, isDownloading }) {
+  if (!result) return null;
+  const { primary_standards = [], allied_standards = [], summary, tender_clauses = [], thought_process = [], sources = [] } = result;
+  return (
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
+      {/* Thought process */}
+      {thought_process.length > 0 && <ThoughtProcessAccordion steps={thought_process} />}
+
+      {/* Summary */}
+      {summary && (
+        <div className="p-4 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800/50 rounded-xl">
+          <p className="text-[13px] text-slate-700 dark:text-slate-200 leading-relaxed">{summary}</p>
+        </div>
+      )}
+
+      {/* Primary standards */}
+      {primary_standards.length > 0 && (
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-base">🏅</span>
+            <h3 className="text-[12px] font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">Primary Applicable Standards ({primary_standards.length})</h3>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            {primary_standards.map((s, i) => <PrimaryStandardCard key={i} std={s} index={i} />)}
+          </div>
+        </div>
+      )}
+
+      {/* Allied standards */}
+      {allied_standards.length > 0 && (
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[var(--brand-primary)]">{Icons.globe}</span>
+            <h3 className="text-[12px] font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">Allied & Reference Standards ({allied_standards.length})</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+            {allied_standards.map((s, i) => <AlliedStandardCard key={i} std={s} index={i} />)}
+          </div>
+        </div>
+      )}
+
+      {/* Tender clauses */}
+      <TenderClausePanel clauses={tender_clauses} />
+
+      {/* Actions row */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <button
+          onClick={onDownloadPdf}
+          disabled={isDownloading}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-[#0055A4] hover:bg-[#004080] dark:bg-sky-600 dark:hover:bg-sky-500 text-white rounded-xl text-xs font-semibold shadow-md transition-colors cursor-pointer disabled:opacity-60"
+        >
+          {isDownloading ? <span className="animate-spin">{Icons.spinner}</span> : <span>{Icons.download}</span>}
+          {isDownloading ? "Generating PDF..." : "Download Procurement Report (PDF)"}
+        </button>
+        {sources.length > 0 && (
+          <span className="text-[11px] text-slate-400">{sources.length} BIS sources retrieved</span>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -640,6 +904,16 @@ export default function ChatInterface() {
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [activeTab, setActiveTab] = useState(null);
   const [showEvaluatorModal, setShowEvaluatorModal] = useState(false);
+
+  // D.A.R.P.A.N Procurement Mode state
+  const [appMode, setAppMode] = useState("procurement"); // "procurement" | "compliance"
+  const [procurementInput, setProcurementInput] = useState("");
+  const [procurementContext, setProcurementContext] = useState("");
+  const [isProcurementLoading, setIsProcurementLoading] = useState(false);
+  const [procurementResult, setProcurementResult] = useState(null);
+  const [procurementHistory, setProcurementHistory] = useState([]);
+  const [isDownloadingProcPdf, setIsDownloadingProcPdf] = useState(false);
+  const procurementInputRef = useRef(null);
 
   const fileInputRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -818,6 +1092,70 @@ export default function ChatInterface() {
   /* ─── API ─── */
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+  /* ─── D.A.R.P.A.N Procurement API ─── */
+  const handleProcurementSearch = async () => {
+    if (!procurementInput.trim()) return;
+    setIsProcurementLoading(true);
+    setProcurementResult(null);
+    const query = procurementInput.trim();
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/recommend-standards`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_description: query,
+          tender_context: procurementContext.trim(),
+          language,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setProcurementResult(data);
+        setProcurementHistory(prev => [{ query, result: data, ts: Date.now() }, ...prev.slice(0, 9)]);
+      } else {
+        setProcurementResult({ summary: `Error: ${data.detail || "Failed to get recommendations."}`, primary_standards: [], allied_standards: [], tender_clauses: [], thought_process: [], sources: [] });
+      }
+    } catch (err) {
+      setProcurementResult({ summary: "Network error: Unable to reach D.A.R.P.A.N backend. Make sure the backend server is running.", primary_standards: [], allied_standards: [], tender_clauses: [], thought_process: [], sources: [] });
+    } finally {
+      setIsProcurementLoading(false);
+    }
+  };
+
+  const downloadProcurementPdf = async () => {
+    if (!procurementResult) return;
+    setIsDownloadingProcPdf(true);
+    try {
+      const payload = {
+        product_description: procurementInput,
+        tender_context: procurementContext,
+        primary_standards: procurementResult.primary_standards || [],
+        allied_standards: procurementResult.allied_standards || [],
+        summary: procurementResult.summary || "",
+        tender_clauses: procurementResult.tender_clauses || [],
+      };
+      const res = await fetch(`${API_BASE_URL}/api/generate-procurement-report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("PDF generation failed");
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `IS_RADAR_Procurement_Report.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("PDF generation failed. Ensure the backend is running.");
+    } finally {
+      setIsDownloadingProcPdf(false);
+    }
+  };
+
   const handleSend = async (overrideQuery = null) => {
     const query = overrideQuery || input;
     if (!query.trim() && !imagePreview) return;
@@ -870,7 +1208,7 @@ export default function ChatInterface() {
       }
     } catch {
       setIsLoading(false);
-      setMessages((prev) => [...prev, { role: "assistant", content: "Network error: Unable to reach P.R.A.M.A.A.N backend.", is_error: true, failed_query: query, sources: [], actions_taken: [], process_timeline: null, compliance_report: null, isTyping: false }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: "Network error: Unable to reach D.A.R.P.A.N backend.", is_error: true, failed_query: query, sources: [], actions_taken: [], process_timeline: null, compliance_report: null, isTyping: false }]);
     }
   };
 
@@ -964,10 +1302,10 @@ export default function ChatInterface() {
   };
 
   const starterPrompts = [
-    { icon: Icons.flask, text: "Audit my product spec sheet for bottled drinking water plant" },
-    { icon: Icons.shield, text: "What are the steps to apply for a BIS hallmark license?" },
-    { icon: Icons.building, text: "Find me a water testing lab in Delhi" },
-    { icon: Icons.file, text: "Generate a compliance gap report for ISI mark on steel" },
+    { icon: Icons.file, text: "Draft tender specification clauses for procurement of Fe 500D TMT rebars" },
+    { icon: Icons.search, text: "What normative reference standards and test methods are mandatory for LED street lighting procurement?" },
+    { icon: Icons.shield, text: "Check QCO and mandatory BIS certification requirements for commercial electrical appliances" },
+    { icon: Icons.doc, text: "Help me prepare technical bid evaluation criteria for packaged drinking water tenders" },
   ];
 
   /* ═══════════════ RENDER ═══════════════ */
@@ -999,29 +1337,76 @@ export default function ChatInterface() {
         {/* Brand */}
         <div className="px-4 py-3.5 border-b border-white/6">
           <div className="flex items-center gap-2.5">
-            <img src="/bis-logo.png" alt="BIS" className="w-9 h-9 rounded-lg object-contain shrink-0 bg-white p-0.5 shadow-xs" />
+            <div className="w-9 h-9 rounded-lg bg-linear-to-br from-[#0055A4] to-violet-700 flex items-center justify-center shrink-0 shadow-md text-base">
+              <img src="/bis-logo.png" alt="BIS" className="w-6 h-6 object-contain" />
+            </div>
             <div className="min-w-0">
-              <h1 className="text-[13px] font-bold text-white tracking-tight leading-none">P.R.A.M.A.A.N</h1>
-              <p className="text-[10px] text-slate-400 mt-0.5 leading-none">Bureau of Indian Standards</p>
+              <h1 className="text-[13px] font-bold text-white tracking-tight leading-none isradar-gradient">D.A.R.P.A.N</h1>
+              <p className="text-[10px] text-slate-400 mt-0.5 leading-none">Team Tark (तर्क)</p>
             </div>
           </div>
         </div>
 
-        {/* Strategy Portals */}
+        {/* Mode Switcher */}
+        <div className="px-3 pt-3 pb-2">
+          <p className="px-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Mode</p>
+          <div className="flex gap-1 p-0.5 bg-slate-900 dark:bg-[#070b14] rounded-lg border border-slate-800">
+            <button
+              onClick={() => setAppMode("procurement")}
+              className={`flex-1 px-2 py-1.5 rounded-md text-[10.5px] font-semibold transition-all duration-200 ${
+                appMode === "procurement" ? "bg-[#0055A4] text-white shadow-md" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              <span className="inline-flex items-center gap-1.5">{Icons.search} Recommender</span>
+            </button>
+            <button
+              onClick={() => setAppMode("compliance")}
+              className={`flex-1 px-2 py-1.5 rounded-md text-[10.5px] font-semibold transition-all duration-200 ${
+                appMode === "compliance" ? "bg-slate-700 text-white shadow-md" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              <span className="inline-flex items-center gap-1.5">{Icons.brain} Procurement Chat</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Procurement History (when in procurement mode) */}
+        {appMode === "procurement" && procurementHistory.length > 0 && (
+          <div className="px-3 pt-1 pb-2">
+            <p className="px-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Recent Queries</p>
+            {procurementHistory.slice(0, 5).map((h, i) => (
+              <button
+                key={h.ts}
+                onClick={() => { setProcurementInput(h.query); setProcurementResult(h.result); setMobileSidebar(false); }}
+                className="w-full flex items-start gap-2 px-2.5 py-1.5 rounded-md text-[10.5px] text-slate-300 hover:bg-white/6 hover:text-white transition-colors text-left cursor-pointer"
+              >
+                <span className="text-slate-300 shrink-0 mt-0.5">{Icons.search}</span>
+                <span className="truncate">{h.query.length > 35 ? h.query.slice(0, 35) + "..." : h.query}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* BIS Procurement Toolkit */}
         <div className="px-3 pt-3 pb-1">
-          <p className="px-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">Strategy Portals</p>
+          <p className="px-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500 mb-1.5">
+            Procurement Toolkit
+          </p>
           {strategyPortals.map((p) => (
             <button
               key={p.id}
               onClick={() => {
                 if (p.id === "fee") {
                   setShowFeePanel(!showFeePanel);
-                } else if (p.id === "lab") {
-                  window.location.href = "/labs";
-                } else if (p.id === "hallmark") {
-                  window.location.href = "/hallmark";
+                } else if (p.id === "tender_drafter") {
+                  setAppMode("compliance");
+                  handleSend("Help me draft tender specification clauses and pre-qualification criteria for an upcoming procurement.");
+                } else if (p.id === "qco_registry") {
+                  setAppMode("compliance");
+                  handleSend("What are the mandatory QCO orders and BIS certification schemes applicable for public procurement?");
                 } else {
-                  handleSend(`Open ${p.label}`);
+                  setAppMode("compliance");
+                  handleSend("How do I identify normative reference standards and test method IS codes for tender specifications?");
                 }
                 setMobileSidebar(false);
               }}
@@ -1029,16 +1414,6 @@ export default function ChatInterface() {
             >
               <span className="text-slate-400 shrink-0">{p.icon}</span>
               <span className="truncate">{p.label}</span>
-              {p.id === "lab" && (
-                <span className="ml-auto text-[9px] bg-blue-500/20 text-blue-300 font-bold px-1.5 py-0.2 rounded">
-                  MAP
-                </span>
-              )}
-              {p.id === "hallmark" && (
-                <span className="ml-auto text-[9px] bg-amber-500/20 text-amber-300 font-bold px-1.5 py-0.2 rounded">
-                  HUID
-                </span>
-              )}
             </button>
           ))}
 
@@ -1062,7 +1437,7 @@ export default function ChatInterface() {
 
         {/* Sidebar Footer Info */}
         <div className="p-3 border-t border-white/6 flex items-center justify-between text-[10px] text-slate-500">
-          <span>BIS v2.4 Regulatory Core</span>
+          <span>D.A.R.P.A.N v1.0</span>
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="System Live" />
         </div>
       </aside>
@@ -1078,8 +1453,8 @@ export default function ChatInterface() {
           </button>
           {/* Mobile brand */}
           <div className="lg:hidden flex items-center gap-2 min-w-0">
-            <img src="/bis-logo.png" alt="BIS" className="w-7 h-7 rounded-md object-contain shrink-0 bg-white p-0.5" />
-            <span className="text-sm font-semibold text-gray-900 dark:text-white truncate">P.R.A.M.A.A.N</span>
+            <img src="/bis-logo.png" alt="BIS" className="w-6 h-6 object-contain" />
+            <span className="text-sm font-semibold text-gray-900 dark:text-white truncate isradar-gradient">D.A.R.P.A.N</span>
           </div>
 
           {/* Tabs */}
@@ -1144,7 +1519,7 @@ export default function ChatInterface() {
                   : "bg-white dark:bg-slate-900 text-gray-600 dark:text-slate-300 border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800"
               }`}
             >
-              {Icons.tag} MSME Fee
+              {Icons.tag} Testing Fees
             </button>
 
             {/* Dark Mode Toggle Button */}
@@ -1152,18 +1527,154 @@ export default function ChatInterface() {
           </div>
         </header>
 
-        {/* ── Content (Chat + Fee) ── */}
+        {/* ── Content (Procurement / Chat + Fee) ── */}
         <div className="flex-1 flex overflow-hidden">
 
-          {/* Chat Area */}
+          {/* ═══ PROCUREMENT MODE ═══ */}
+          {appMode === "procurement" && (
+            <main className="flex-1 overflow-y-auto min-w-0 relative">
+              <div className="max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+                {/* D.A.R.P.A.N Header Banner */}
+                {!procurementResult && !isProcurementLoading && (
+                  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-2 pt-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 text-[10.5px] font-bold text-blue-700 dark:text-blue-300 uppercase tracking-wide mb-2">
+                      <span>{Icons.search}</span> AI-Powered Procurement Intelligence
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
+                      <span className="isradar-gradient">D.A.R.P.A.N</span>
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                      Indian Standards Recommendation &amp; Advisory for Procurement — Enter a product description or paste your tender specification to instantly identify the most relevant Indian Standards (IS codes), allied standards, and mandatory certifications.
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* Input Panel */}
+                <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-4 sm:p-5">
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-1.5 block">
+                        {Icons.file} Product Description / Tender Specification *
+                      </label>
+                      <textarea
+                        ref={procurementInputRef}
+                        value={procurementInput}
+                        onChange={e => setProcurementInput(e.target.value)}
+                        onKeyDown={e => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) handleProcurementSearch(); }}
+                        placeholder="e.g. High-strength TMT steel reinforcement bars (Fe 500D) for bridge construction, requiring tensile strength ≥500 MPa..."
+                        rows={3}
+                        className="procurement-textarea w-full px-3.5 py-3 text-[13px] text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-[#0d131f] border border-slate-200 dark:border-slate-700 rounded-xl placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-1.5 block">
+                        {Icons.doc} Tender Context (optional — paste excerpt from tender document)
+                      </label>
+                      <textarea
+                        value={procurementContext}
+                        onChange={e => setProcurementContext(e.target.value)}
+                        placeholder="Optional: paste relevant sections from your draft tender document..."
+                        rows={2}
+                        className="procurement-textarea w-full px-3.5 py-2.5 text-[12px] text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-[#0d131f] border border-slate-200 dark:border-slate-700 rounded-xl placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <button
+                        onClick={handleProcurementSearch}
+                        disabled={isProcurementLoading || !procurementInput.trim()}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-linear-to-r from-[#0055A4] to-violet-700 hover:from-[#004080] hover:to-violet-800 text-white rounded-xl text-sm font-bold shadow-lg transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isProcurementLoading ? <span className="animate-spin">{Icons.spinner}</span> : <span>{Icons.search}</span>}
+                        {isProcurementLoading ? "Searching Standards..." : "Find Applicable IS Standards"}
+                      </button>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[10.5px] text-slate-400">Language:</span>
+                        <CustomSelect
+                          value={language}
+                          onChange={setLanguage}
+                          options={[
+                            { value: "English", label: "EN", subtitle: "English" },
+                            { value: "Hindi", label: "HI", subtitle: "हिन्दी" },
+                            { value: "Tamil", label: "TA", subtitle: "தமிழ்" },
+                            { value: "Bengali", label: "BN", subtitle: "বাংলা" },
+                          ]}
+                          size="sm"
+                          icon={Icons.globe}
+                          className="w-20"
+                          buttonClassName="py-1 px-2 text-[11px] h-[28px] rounded-md border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900"
+                          menuClassName="w-32 right-0"
+                          align="right"
+                          ariaLabel="Select language"
+                        />
+                      </div>
+                      <span className="text-[10px] text-slate-400 hidden sm:block">Ctrl+Enter to search</span>
+                      {procurementResult && (
+                        <button
+                          onClick={() => { setProcurementResult(null); setProcurementInput(""); setProcurementContext(""); }}
+                          className="text-[11px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer ml-auto"
+                        >
+                          ✕ Clear
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick starter prompts */}
+                {!procurementResult && !isProcurementLoading && (
+                  <div>
+                    <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium mb-2">Try these examples:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {[
+                        "TMT steel rebars Fe500D for bridge construction",
+                        "LED street lights 150W procurement for municipal corporation",
+                        "Packaged drinking water for school canteen supply",
+                        "Electric toys for children below 14 years",
+                        "Domestic LPG cylinders and regulators",
+                      ].map((prompt, i) => (
+                        <button
+                          key={i}
+                          onClick={() => { setProcurementInput(prompt); setTimeout(() => procurementInputRef.current?.focus(), 50); }}
+                          className="text-[11px] px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 hover:text-blue-700 dark:hover:text-blue-300 border border-slate-200 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-800 transition-colors cursor-pointer"
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Procurement loading state */}
+                {isProcurementLoading && (
+                  <ProcurementThinkingCard query={procurementInput} />
+                )}
+
+                {/* Results */}
+                {procurementResult && !isProcurementLoading && (
+                  <ProcurementResults
+                    result={procurementResult}
+                    onDownloadPdf={downloadProcurementPdf}
+                    isDownloading={isDownloadingProcPdf}
+                  />
+                )}
+
+              </div>
+            </main>
+          )}
+
+          {/* ═══ COMPLIANCE / CHAT MODE ═══ */}
+          {appMode === "compliance" && (
           <main ref={chatContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto min-w-0 relative">
             {messages.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 lg:px-8 py-8">
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="space-y-6 max-w-3xl lg:max-w-4xl w-full">
                   <div className="space-y-2.5">
                     <img src="/bis-logo.png" alt="BIS" className="w-16 h-16 rounded-2xl object-contain shadow-lg mb-1 bg-white p-1.5 mx-auto" />
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">How can I help you with Indian Standards today?</h2>
-                    <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 max-w-lg mx-auto">Verify BIS certifications, audit product compliance, calculate MSME marking fees, or explore Indian standards.</p>
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">D.A.R.P.A.N Procurement Assistant</h2>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 max-w-lg mx-auto">
+                      AI Advisory Chatbot for procurement officials. Ask questions about applicable Indian Standards, draft technical clauses, clarify normative references, or verify QCO mandatory orders.
+                    </p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                     {starterPrompts.map((p, i) => (
@@ -1407,6 +1918,7 @@ export default function ChatInterface() {
               </button>
             )}
           </main>
+          )}
 
           {/* ═══ Industry-Grade BIS Fee & Feasibility Estimator Panel ═══ */}
           <AnimatePresence>
@@ -1729,9 +2241,12 @@ export default function ChatInterface() {
               </motion.aside>
             )}
           </AnimatePresence>
-        </div>
 
-        {/* ── Footer ── */}
+        </div>{/* end flex-1 flex overflow-hidden */}
+
+        {/* ── Footer (Compliance Chat Input — only in compliance mode) ── */}
+        {appMode === "compliance" && (
+
         <footer className="shrink-0 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1120] transition-colors">
           <div className="w-full max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 space-y-2">
             {messages.length > 0 && (
@@ -1767,7 +2282,7 @@ export default function ChatInterface() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                placeholder="Ask anything about Indian Standards, upload a product label, or verify..."
+                placeholder="Ask about Indian Standards, tender clauses, test methods, or upload a technical spec sheet..."
                 className="flex-1 min-w-0 px-3.5 py-2.5 bg-slate-100 dark:bg-[#111827] border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 caret-[#0055A4] dark:caret-sky-400 focus:outline-none focus:bg-white dark:focus:bg-[#0f172a] focus:border-[#0055A4] dark:focus:border-sky-500 focus:ring-2 focus:ring-[#0055A4]/20 transition-all font-medium"
                 disabled={isLoading}
               />
@@ -1787,10 +2302,11 @@ export default function ChatInterface() {
             </div>
 
             <p className="text-center text-[9px] text-slate-400 dark:text-slate-500 leading-tight">
-              P.R.A.M.A.A.N is an official AI agent under Bureau of Indian Standards, verified against gazetted <span className="font-medium text-slate-500 dark:text-slate-400">National Register</span> — <span className="font-semibold text-slate-500 dark:text-slate-400">1805 IS &middot; 11,400+</span>
+              D.A.R.P.A.N — Digital Advanced Recommendation for Procurement and Allied Norms by <span className="font-semibold text-slate-500">Team Tark (तर्क)</span> — verified against <span className="font-medium text-slate-500 dark:text-slate-400">National BIS Register · 1,805+ Published Standards</span>
             </p>
           </div>
         </footer>
+        )}
       </div>
 
       {/* SIH Evaluator & Selector Guide Modal */}

@@ -1,6 +1,8 @@
-# P.R.A.M.A.A.N (Platform for Regulatory And Marking Authenticity Across Nation)
+# D.A.R.P.A.N (Digital Advanced Recommendation for Procurement and Allied Norms)
 
-An intelligent full-stack AI platform built for the Bureau of Indian Standards (BIS) compliance, regulatory feasibility, itemized fee quotation generation, and automated documentation analysis.
+An intelligent full-stack AI platform built for Bureau of Indian Standards (BIS) procurement guidance, standards recommendation, regulatory feasibility, itemized fee quotation generation, laboratory discovery, hallmark verification, and automated documentation analysis.
+
+D.A.R.P.A.N supports government procurement officials, tender committees, MSMEs, manufacturers, laboratories, and consumers with a standards recommender, procurement advisory chat, compliance reports, a fee estimator, a Pan-India laboratory locator, and a hallmark/HUID portal.
 
 ---
 
@@ -59,6 +61,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 | --- | --- | --- | --- |
 | `GET` | `/health` | Backend Health Check | `{"status": "BIS Backend is running natively"}` |
 | `POST` | `/api/chat` | Multilingual, ELI5 & Vision RAG Query | Payload: `{"query": "string", "language": "English|Hindi|Tamil|Bengali", "simplify": bool, "image_base64": "string"}` -> Output: `{"answer": "string", "sources": [...]}` |
+| `POST` | `/api/recommend-standards` | Recommend primary and allied standards for a procurement description | Procurement description and optional tender context |
+| `POST` | `/api/generate-procurement-report` | Download a standards recommendation report | Recommendation result payload |
+| `POST` | `/api/generate-fee-quotation` | Download a statutory fee quotation | Fee estimator configuration |
+| `GET` | `/api/download-report/{id}` | Download a compliance readiness report | Report identifier |
 
 ---
 

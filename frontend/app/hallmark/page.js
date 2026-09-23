@@ -397,7 +397,7 @@ export default function HallmarkPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
-                    P.R.A.M.A.A.N Hallmark Verifier
+                    D.A.R.P.A.N Hallmark Verifier
                   </h1>
                   <span className="bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                     HUID & IS 1417

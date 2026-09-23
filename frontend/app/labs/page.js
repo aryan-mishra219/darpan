@@ -1124,7 +1124,7 @@ export default function LabLocatorPage() {
               <img src="/bis-logo.png" alt="BIS" className="w-8 h-8 rounded-lg object-contain bg-slate-50 dark:bg-slate-800 p-0.5 border border-slate-200 dark:border-slate-700 shadow-xs" />
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-base font-bold text-slate-900 dark:text-white leading-tight">P.R.A.M.A.A.N Lab Locator</h1>
+                  <h1 className="text-base font-bold text-slate-900 dark:text-white leading-tight">D.A.R.P.A.N Lab Locator</h1>
                   <span className="bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                     ILMS Portal
                   </span>

@@ -30,7 +30,7 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     try {
-      const savedTheme = localStorage.getItem("pramaan_theme");
+      const savedTheme = localStorage.getItem("darpan_theme");
       if (savedTheme === "dark") {
         setThemeState("dark");
         applyTheme("dark");
@@ -38,7 +38,7 @@ export function ThemeProvider({ children }) {
         setThemeState("light");
         applyTheme("light");
         if (!savedTheme) {
-          localStorage.setItem("pramaan_theme", "light");
+          localStorage.setItem("darpan_theme", "light");
         }
       }
     } catch {
@@ -51,7 +51,7 @@ export function ThemeProvider({ children }) {
     setThemeState((prev) => {
       const nextTheme = prev === "dark" ? "light" : "dark";
       try {
-        localStorage.setItem("pramaan_theme", nextTheme);
+        localStorage.setItem("darpan_theme", nextTheme);
       } catch {
         // Ignore
       }
@@ -63,7 +63,7 @@ export function ThemeProvider({ children }) {
   const setTheme = useCallback((newTheme) => {
     setThemeState(newTheme);
     try {
-      localStorage.setItem("pramaan_theme", newTheme);
+      localStorage.setItem("darpan_theme", newTheme);
     } catch {
       // Ignore
     }

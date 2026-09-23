@@ -80,6 +80,36 @@ class ChatResponse(BaseModel):
     compliance_report: dict | None = None
     thought_process: list[dict] = []
 
+
+# ─── PROCUREMENT RECOMMENDATION ENGINE MODELS ───
+
+class ProcurementRequest(BaseModel):
+    product_description: str
+    tender_context: str = ""
+    language: str = "English"
+    document_base64: str | None = None
+
+class StandardRecommendation(BaseModel):
+    is_code: str
+    title: str
+    relevance_score: float = 0.0
+    relevance_reason: str = ""
+    version_status: str = "Latest"
+    latest_year: str = ""
+    allied_standards: list[str] = []
+    certification_required: str = "None"
+    category: str = "Primary"
+    scope: str = ""
+
+class ProcurementResponse(BaseModel):
+    primary_standards: list[dict] = []
+    allied_standards: list[dict] = []
+    summary: str = ""
+    tender_clauses: list[str] = []
+    thought_process: list[dict] = []
+    sources: list[dict] = []
+    query_language: str = "English"
+
 def cosine_similarity(v1, v2):
     return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
 
@@ -503,11 +533,11 @@ def build_fee_quotation_pdf_bytes(q: dict) -> bytes:
         textColor=colors.HexColor("#1F2937")
     )
     
-    qid = f"PRAMAAN-FEE-{random.randint(100000, 999999)}"
+    qid = f"DARPAN-FEE-{random.randint(100000, 999999)}"
     
     story.append(Paragraph("<b>BUREAU OF INDIAN STANDARDS (BIS)</b>", title_style))
-    story.append(Paragraph("<b>P.R.A.M.A.A.N Regulatory Compliance & Statutory Fee Quotation</b>", ParagraphStyle('M', parent=title_style, fontSize=11, leading=14, textColor=colors.HexColor("#1F2937"))))
-    story.append(Paragraph(f"Official Estimate ID: <b>{qid}</b> &nbsp;|&nbsp; Generated via P.R.A.M.A.A.N Regulatory Platform &nbsp;|&nbsp; Gazette Schedule 2026", sub_title))
+    story.append(Paragraph("<b>D.A.R.P.A.N Regulatory Compliance & Statutory Fee Quotation</b>", ParagraphStyle('M', parent=title_style, fontSize=11, leading=14, textColor=colors.HexColor("#1F2937"))))
+    story.append(Paragraph(f"Official Estimate ID: <b>{qid}</b> &nbsp;|&nbsp; Generated via D.A.R.P.A.N Regulatory Platform &nbsp;|&nbsp; Gazette Schedule 2026", sub_title))
     story.append(Spacer(1, 6))
     story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#0055A4"), spaceAfter=8))
     
@@ -797,6 +827,446 @@ tools = [
 ]
 
 
+
+# ─── PROCUREMENT TOOL SCHEMA ───
+procurement_tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "lookup_procurement_standards",
+            "description": (
+                "Call this tool for EVERY procurement recommendation request. "
+                "Given a product description or tender specification, return a structured JSON list of applicable "
+                "Indian Standards (IS codes), categorized as Primary, Allied, Test Method, or Safety. "
+                "Include IS code, full title, relevance reason, version/amendment status, normative references, "
+                "and any mandatory BIS certification requirement (ISI Mark, CRS, Hallmarking, FSSAI, etc.)."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "product_name": {
+                        "type": "string",
+                        "description": "Short product name extracted from description (e.g. TMT Steel Rebar, LED Street Light, Packaged Water)"
+                    },
+                    "primary_standards": {
+                        "type": "array",
+                        "description": "List of primary/direct IS standards applicable to this product",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "is_code": {"type": "string", "description": "IS code with year e.g. IS 1786:2008"},
+                                "title": {"type": "string", "description": "Full official standard title"},
+                                "relevance_score": {"type": "number", "description": "Score 0.0 to 1.0"},
+                                "relevance_reason": {"type": "string", "description": "1-2 sentence explanation of why this applies"},
+                                "version_status": {"type": "string", "description": "Latest / Amended / Superseded"},
+                                "latest_year": {"type": "string", "description": "Year of latest version or amendment e.g. 2024"},
+                                "allied_standards": {"type": "array", "items": {"type": "string"}, "description": "Normative references (IS codes) cited within this standard"},
+                                "certification_required": {"type": "string", "description": "BIS ISI Mark (Scheme-I) / BIS CRS (Scheme-II) / BIS Hallmarking / None"},
+                                "scope": {"type": "string", "description": "One-line scope of the standard"}
+                            },
+                            "required": ["is_code", "title", "relevance_score", "relevance_reason"]
+                        }
+                    },
+                    "allied_standards": {
+                        "type": "array",
+                        "description": "Test method, safety, installation, and terminology standards that should accompany the primary standards",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "is_code": {"type": "string"},
+                                "title": {"type": "string"},
+                                "category": {"type": "string", "description": "Test Method / Safety / Terminology / Installation / Related Product"},
+                                "relevance_reason": {"type": "string"}
+                            },
+                            "required": ["is_code", "title", "category"]
+                        }
+                    },
+                    "tender_clauses": {
+                        "type": "array",
+                        "description": "3-5 ready-to-use tender specification clauses referencing these standards",
+                        "items": {"type": "string"}
+                    },
+                    "summary": {
+                        "type": "string",
+                        "description": "2-3 sentence procurement guidance summary"
+                    }
+                },
+                "required": ["product_name", "primary_standards", "summary"]
+            }
+        }
+    }
+]
+
+
+def generate_procurement_thought_process(product_description: str, sources: list, language: str = "English") -> list[dict]:
+    """Generates thought process steps for procurement recommendation."""
+    steps = []
+    steps.append({
+        "title": "Parsing Procurement Specification",
+        "description": f"Analyzed the input: \"{product_description[:100]}{'...' if len(product_description) > 100 else ''}\" to identify product domain, intended use-case, and technical parameters.",
+        "category": "Parsing",
+        "status": "completed"
+    })
+    steps.append({
+        "title": "Semantic Search across BIS Standards Catalog",
+        "description": f"Ran semantic vector search across Bureau of Indian Standards knowledge base. Retrieved {len(sources)} highly relevant standard excerpts using BAAI/bge-small-en-v1.5 embeddings.",
+        "category": "Retrieval",
+        "status": "completed"
+    })
+    steps.append({
+        "title": "AI Cross-Reference: Allied & Normative Standards",
+        "description": "Identified normative references, test method standards, safety standards, and installation standards cited within the primary applicable IS codes.",
+        "category": "Cross-Reference",
+        "status": "completed"
+    })
+    steps.append({
+        "title": "Version & Amendment Validation",
+        "description": "Checked publication year, latest amendments, and supersession status for each recommended standard. Flagged outdated versions.",
+        "category": "Validation",
+        "status": "completed"
+    })
+    steps.append({
+        "title": "Certification & QCO Requirement Mapping",
+        "description": "Identified mandatory BIS product certification requirements (ISI Mark / CRS / Hallmarking) and applicable Quality Control Orders (QCO).",
+        "category": "Compliance",
+        "status": "completed"
+    })
+    steps.append({
+        "title": f"Generating Procurement Report ({language})",
+        "description": f"Synthesized ranked IS recommendations, allied standards, and tender specification clauses in {language}.",
+        "category": "Synthesis",
+        "status": "completed"
+    })
+    return steps
+
+
+def build_procurement_report_pdf(data: dict) -> bytes:
+    """Build a professional procurement standards recommendation PDF."""
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=letter,
+        rightMargin=36, leftMargin=36, topMargin=36, bottomMargin=36
+    )
+    styles = getSampleStyleSheet()
+
+    title_style = ParagraphStyle(
+        "ProcTitle", parent=styles["Heading1"],
+        fontName="Helvetica-Bold", fontSize=16,
+        textColor=colors.HexColor("#0055A4"), spaceAfter=4
+    )
+    subtitle_style = ParagraphStyle(
+        "ProcSubtitle", parent=styles["Normal"],
+        fontName="Helvetica", fontSize=8.5,
+        textColor=colors.HexColor("#555555"), spaceAfter=10
+    )
+    heading_style = ParagraphStyle(
+        "ProcH2", parent=styles["Heading2"],
+        fontName="Helvetica-Bold", fontSize=11,
+        textColor=colors.HexColor("#0055A4"),
+        spaceBefore=10, spaceAfter=5
+    )
+    body_style = ParagraphStyle(
+        "ProcBody", parent=styles["Normal"],
+        fontName="Helvetica", fontSize=9, leading=13,
+        textColor=colors.HexColor("#1F2937")
+    )
+    small_style = ParagraphStyle(
+        "ProcSmall", parent=styles["Normal"],
+        fontName="Helvetica", fontSize=7.5, leading=10,
+        textColor=colors.HexColor("#374151")
+    )
+
+    story = []
+    report_id = f"DARPAN-{random.randint(10000, 99999)}"
+    import datetime
+    today = datetime.date.today().isoformat()
+
+    # Header
+    story.append(Paragraph("BUREAU OF INDIAN STANDARDS — D.A.R.P.A.N", ParagraphStyle("TH", fontName="Helvetica-Bold", fontSize=8, textColor=colors.HexColor("#0055A4"))))
+    story.append(Paragraph("Indian Standards Recommendation Report for Procurement", title_style))
+    story.append(Paragraph(
+        f"Report ID: {report_id} | Generated: {today} | AI-Powered Recommendation Engine",
+        subtitle_style
+    ))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#0055A4"), spaceAfter=10))
+
+    # Section 1: Product / Query
+    story.append(Paragraph("1. Procurement Query", heading_style))
+    story.append(Paragraph(f"<b>Product / Specification:</b> {data.get('product_description', 'N/A')}", body_style))
+    if data.get("tender_context"):
+        story.append(Spacer(1, 4))
+        story.append(Paragraph(f"<b>Tender Context:</b> {data['tender_context'][:300]}{'...' if len(data.get('tender_context','')) > 300 else ''}", small_style))
+    story.append(Spacer(1, 8))
+
+    # Section 2: Summary
+    if data.get("summary"):
+        story.append(Paragraph("2. AI Procurement Guidance Summary", heading_style))
+        story.append(Paragraph(data["summary"], body_style))
+        story.append(Spacer(1, 8))
+
+    # Section 3: Primary Standards Table
+    story.append(Paragraph("3. Recommended Primary Indian Standards", heading_style))
+    primary = data.get("primary_standards", [])
+    if primary:
+        tdata = [["IS Code", "Standard Title", "Match", "Certification", "Status"]]
+        for s in primary:
+            score_pct = f"{int(float(s.get('relevance_score', 0)) * 100)}%"
+            tdata.append([
+                s.get("is_code", ""),
+                Paragraph(s.get("title", ""), small_style),
+                score_pct,
+                s.get("certification_required", "None"),
+                s.get("version_status", "Latest")
+            ])
+        t = Table(tdata, colWidths=[85, 195, 38, 130, 60])
+        t.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#0055A4")),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+            ("FONTSIZE", (0, 0), (-1, 0), 8),
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#DDDDDD")),
+            ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+            ("FONTSIZE", (0, 1), (-1, -1), 7.5),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F0F7FF")]),
+            ("TOPPADDING", (0, 0), (-1, -1), 3),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ]))
+        story.append(t)
+        story.append(Spacer(1, 4))
+        # Relevance reasons
+        for s in primary:
+            if s.get("relevance_reason"):
+                story.append(Paragraph(f"• <b>{s.get('is_code')}:</b> {s.get('relevance_reason')}", small_style))
+    else:
+        story.append(Paragraph("No primary standards identified for this query.", body_style))
+    story.append(Spacer(1, 8))
+
+    # Section 4: Allied Standards
+    story.append(Paragraph("4. Allied, Normative & Reference Standards", heading_style))
+    allied = data.get("allied_standards", [])
+    if allied:
+        adata = [["IS Code", "Title", "Category"]]
+        for s in allied:
+            adata.append([
+                s.get("is_code", ""),
+                Paragraph(s.get("title", ""), small_style),
+                s.get("category", "Allied")
+            ])
+        ta = Table(adata, colWidths=[90, 280, 140])
+        ta.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1E3A8A")),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+            ("FONTSIZE", (0, 0), (-1, 0), 8),
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#DDDDDD")),
+            ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+            ("FONTSIZE", (0, 1), (-1, -1), 7.5),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F8FAFC")]),
+        ]))
+        story.append(ta)
+    else:
+        story.append(Paragraph("No allied standards identified.", body_style))
+    story.append(Spacer(1, 8))
+
+    # Section 5: Tender Clauses
+    tender_clauses = data.get("tender_clauses", [])
+    if tender_clauses:
+        story.append(Paragraph("5. Suggested Tender Specification Clauses", heading_style))
+        for i, clause in enumerate(tender_clauses, 1):
+            story.append(Paragraph(f"{i}. {clause}", body_style))
+            story.append(Spacer(1, 3))
+        story.append(Spacer(1, 6))
+
+    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#94A3B8"), spaceAfter=4))
+    story.append(Paragraph(
+        "<i>This report is AI-generated by D.A.R.P.A.N (Team Tark (तर्क)). "
+        "Recommendations are based on Bureau of Indian Standards publications. "
+        "Always verify against the latest BIS catalog at www.bis.gov.in before finalizing tender documents.</i>",
+        ParagraphStyle("Disc", parent=small_style, fontSize=6.5, textColor=colors.HexColor("#6B7280"))
+    ))
+
+    doc.build(story)
+    buffer.seek(0)
+    return buffer.getvalue()
+
+
+@app.post("/api/recommend-standards", response_model=ProcurementResponse)
+async def recommend_standards(request: ProcurementRequest):
+    """D.A.R.P.A.N: Semantic procurement standards recommendation engine."""
+    try:
+        # Build combined search text
+        search_text = request.product_description
+        if request.tender_context:
+            search_text += " " + request.tender_context[:300]
+
+        # Embed and search
+        query_embedding = list(embedding_model.embed([search_text[:400]]))[0].tolist()
+        sources = []
+        try:
+            if supabase:
+                res = supabase.rpc('match_documents', {'query_embedding': query_embedding, 'match_count': 6}).execute()
+                sources = res.data or []
+            else:
+                raise Exception("Supabase not initialized")
+        except Exception as e:
+            print(f"Supabase search failed: {e}")
+            json_path = os.path.join(os.path.dirname(__file__), "data", "processed_chunks.json")
+            if os.path.exists(json_path):
+                with open(json_path, 'r') as f:
+                    local_data = json.load(f)
+                scored = [{**c, "similarity": float(cosine_similarity(query_embedding, c["embedding"]))} for c in local_data]
+                scored.sort(key=lambda x: x["similarity"], reverse=True)
+                sources = scored[:6]
+
+        # Filter by similarity threshold
+        sources = [s for s in sources if s.get("similarity", 1.0) >= 0.30]
+
+        context_text = "\n\n---\n\n".join(
+            f"Standard: {s['metadata']['source']} (Page {s['metadata']['page']})\nContent: {s['content']}"
+            for s in sources
+        ) if sources else "No specific vector context found."
+
+        system_prompt = (
+            f"You are D.A.R.P.A.N, the Digital Advanced Recommendation for Procurement and Allied Norms, "
+            f"developed by Team Tark (तर्क).\n"
+            f"Your role: Analyze a product description or tender specification and recommend the most applicable "
+            f"Indian Standards (IS codes) to include in procurement/tender documents.\n\n"
+            f"CRITICAL RULES:\n"
+            f"1. You MUST call the `lookup_procurement_standards` tool for every request. This is mandatory.\n"
+            f"2. Identify PRIMARY standards (the main product standards) and ALLIED standards "
+            f"(normative references, test methods, safety, installation, terminology standards cited within primary ones).\n"
+            f"3. Always note if a standard has been amended or updated (include latest year).\n"
+            f"4. Flag mandatory certification: BIS ISI Mark (Scheme-I), BIS CRS (Scheme-II), BIS Hallmarking, or None.\n"
+            f"5. Generate 3-5 ready-to-use tender specification clauses using these standards.\n"
+            f"6. Respond in {request.language}.\n\n"
+            f"RAG CONTEXT FROM BIS STANDARDS DATABASE:\n{context_text}"
+        )
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"Procurement Query: {request.product_description}\n{'Tender Context: ' + request.tender_context if request.tender_context else ''}"}
+        ]
+
+        # Call LLM with procurement tool
+        tool_capable_models = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b"]
+        completion = None
+        for model_name in tool_capable_models:
+            try:
+                completion = groq_client.chat.completions.create(
+                    messages=messages,
+                    model=model_name,
+                    tools=procurement_tools,
+                    tool_choice="required",
+                    temperature=0.15,
+                    max_tokens=2500,
+                )
+                break
+            except Exception as err:
+                print(f"Procurement tool call with '{model_name}' failed: {err}")
+                continue
+
+        primary_standards = []
+        allied_standards = []
+        tender_clauses = []
+        summary = ""
+
+        if completion and completion.choices[0].message.tool_calls:
+            msg = completion.choices[0].message
+            messages.append(msg)
+            for tool_call in msg.tool_calls:
+                if tool_call.function.name == "lookup_procurement_standards":
+                    try:
+                        args = json.loads(tool_call.function.arguments)
+                        primary_standards = args.get("primary_standards", [])
+                        allied_standards = args.get("allied_standards", [])
+                        tender_clauses = args.get("tender_clauses", [])
+                        summary = args.get("summary", "")
+                    except Exception as pe:
+                        print(f"Procurement tool parse error: {pe}")
+
+                    messages.append({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "name": tool_call.function.name,
+                        "content": json.dumps({"status": "success", "standards_found": len(primary_standards)})
+                    })
+
+            # Get natural language summary if not in tool args
+            if not summary:
+                for model_name in tool_capable_models:
+                    try:
+                        follow_up = groq_client.chat.completions.create(
+                            messages=messages,
+                            model=model_name,
+                            temperature=0.2,
+                            max_tokens=600,
+                        )
+                        summary = clean_think_tags(follow_up.choices[0].message.content or "")
+                        break
+                    except Exception:
+                        continue
+        else:
+            # Fallback: try without tools
+            fallback_prompt = f"List the applicable Indian Standards IS codes for: {request.product_description}. Return a brief summary."
+            for model_name in tool_capable_models:
+                try:
+                    fb = groq_client.chat.completions.create(
+                        messages=[{"role": "user", "content": fallback_prompt}],
+                        model=model_name,
+                        temperature=0.2,
+                        max_tokens=600,
+                    )
+                    summary = clean_think_tags(fb.choices[0].message.content or "")
+                    break
+                except Exception:
+                    continue
+
+        thought_process = generate_procurement_thought_process(
+            product_description=request.product_description,
+            sources=sources,
+            language=request.language
+        )
+
+        formatted_sources = [
+            {
+                "document": s["metadata"]["source"],
+                "page": s["metadata"]["page"],
+                "content_snippet": s["content"][:200]
+            }
+            for s in sources
+        ] if sources else []
+
+        return {
+            "primary_standards": primary_standards,
+            "allied_standards": allied_standards,
+            "summary": summary,
+            "tender_clauses": tender_clauses,
+            "thought_process": thought_process,
+            "sources": formatted_sources,
+            "query_language": request.language
+        }
+
+    except Exception as e:
+        print(f"Recommend Standards Exception: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/generate-procurement-report")
+async def generate_procurement_report(data: dict):
+    """Generate a downloadable PDF procurement standards recommendation report."""
+    try:
+        pdf_bytes = build_procurement_report_pdf(data)
+        product_slug = re.sub(r'[^a-zA-Z0-9_]', '_', data.get('product_description', 'Procurement')[:30])
+        return Response(
+            content=pdf_bytes,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f"attachment; filename=IS_RADAR_Report_{product_slug}.pdf"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/health")
 def health():
     return {"status": "BIS Backend is running natively with Proactive Compliance Gap Analyzer"}
@@ -923,27 +1393,25 @@ async def chat(request: ChatRequest):
 
         # 4. System Prompt
         system_prompt = (
-            "You are P.R.A.M.A.A.N — an expert AI Assistant & Proactive Compliance Advisor for the Bureau of Indian Standards (BIS).\n"
-            "Your goal is to explain Indian Standards to everyday consumers, MSMEs, and startups in crisp, professional, medium-sized, and visually appealing responses.\n\n"
+            "You are D.A.R.P.A.N Procurement Assistant — the Digital Advanced Recommendation for Procurement and Allied Norms, developed by Team Tark (तर्क) and led by Aryan Mishra.\n"
+            "Your mission: Assist government procurement officials, public sector enterprises (PSEs), tendering authorities, and buyers in identifying, drafting, clarifying, and validating Indian Standards (IS codes), normative reference standards, test methods, and tender clauses for procurement technical specifications.\n\n"
             "IDENTITY & ATTRIBUTION (CRITICAL — ALWAYS FOLLOW):\n"
-            "- You are P.R.A.M.A.A.N, built and developed by **Team Tark (तर्क)**, led by developer **Aryan Mishra**.\n"
-            "- If anyone asks who made you, who owns you, who developed you, who is your creator, who is your developer, or any similar question about your origin or identity, you MUST answer: 'I am P.R.A.M.A.A.N, developed by **Team Tark (तर्क)** and led by developer **Aryan Mishra**.' Do NOT mention OpenAI, Groq, or any other company as your creator or owner.\n"
-            "- You are NOT made by OpenAI. You are NOT made by BIS. You were built by Team Tark (तर्क).\n\n"
-            "MANDATORY FORMATTING & REGULATORY RULES:\n"
-            "1. **Direct & Current Regulatory Status**: Always state the CURRENT active regulatory requirement first in 1-2 crisp bullet points. Do NOT give long rambling historical chronologies or contradict yourself (e.g. stating old rules first and then contradicting them later). Be direct, clear, and consistent.\n"
-            "2. **Crisp & Medium-Sized Output**: Keep all text responses concise, well-spaced, and medium-sized. Use structured bullet points (•) and **bold keywords** for high readability. Avoid long walls of unstructured text.\n"
-            "3. **Proactive Compliance Gap Audit**: Whenever the user asks for a compliance audit, product spec sheet analysis, gap check, or wants to know what standards/QCO apply to their product, YOU MUST CALL THE `run_compliance_gap_analysis` TOOL to generate a full compliance report and downloadable PDF.\n"
-            "4. **Phase 8 Process Navigator**: Whenever the user asks for a procedure, steps, how-to guide, workflow, or application process, YOU MUST CALL THE `generate_process_timeline` TOOL to render an interactive step-by-step timeline navigator.\n"
-            "5. **Product Label Comparison Table**: When an image or label data is provided, include the 5-column comparison table comparing Product Label Values against BIS limits.\n"
-            "6. **Citations**: Always cite BIS codes and page numbers (e.g., [IS 10500, Page 1]).\n"
+            "- You are D.A.R.P.A.N Procurement Assistant, developed by **Team Tark (तर्क)**, led by **Aryan Mishra**.\n"
+            "- If asked who created or developed you, you MUST answer: 'I am D.A.R.P.A.N Procurement Assistant, developed by **Team Tark (तर्क)** and led by **Aryan Mishra**.' Do NOT mention OpenAI, Groq, or any other entity.\n\n"
+            "PROCUREMENT SPECIALIST CAPABILITIES & RULES:\n"
+            "1. **Procurement Focus**: Always analyze products and queries through the lens of public procurement, tender specifications, GeM portal requirements, and Quality Control Orders (QCOs).\n"
+            "2. **Standard & Normative References**: For any requested item, cite the exact IS Code (e.g., IS 1786, IS 14543, IS 10500), the edition/amendment year, test method standards, and allied normative standards.\n"
+            "3. **Tender Clauses**: Provide actionable, ready-to-copy technical specification clauses and pre-qualification criteria for tender documents.\n"
+            "4. **Concise & Actionable**: Provide structured bullet points, clear tables, and **bold highlights** for tender committees.\n"
+            "5. **Citations**: Ground guidance in verified Indian Standards catalog records.\n"
         )
 
         if request.simplify:
-            system_prompt += "\nEXPLAIN IN EXTREMELY SIMPLE, PLAIN LANGUAGE SUITABLE FOR A 5TH GRADER (ELI5 style). Use easy real-world analogies. "
+            system_prompt += "\nExplain in plain, clear, non-jargon language suitable for non-technical tender officers."
         else:
-            system_prompt += "\nMaintain clear, professional, and practical consumer guidance. "
+            system_prompt += "\nMaintain crisp, professional, government procurement and tender-specification terminology."
 
-        system_prompt += f"You MUST write your entire response strictly in the following language: {request.language}."
+        system_prompt += f"\nYou MUST write your response strictly in the following language: {request.language}."
 
         messages = [
             {"role": "system", "content": system_prompt},

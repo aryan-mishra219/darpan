@@ -1,10 +1,12 @@
-# User Manual & Step-by-Step Feature Guide: P.R.A.M.A.A.N
+# D.A.R.P.A.N User Manual & Step-by-Step Feature Guide
 
 ---
 
-## 1. Project Introduction: What is P.R.A.M.A.A.N?
+## 1. Project Introduction: What is D.A.R.P.A.N?
 
-**P.R.A.M.A.A.N** (*Platform for Regulatory And Marking Authenticity Across Nation*) is an AI-powered regulatory intelligence and standards compliance platform built for the **Bureau of Indian Standards (BIS)**.
+**D.A.R.P.A.N** (*Digital Advanced Recommendation for Procurement and Allied Norms*) is an AI-powered procurement intelligence and standards compliance platform built for the **Bureau of Indian Standards (BIS)**.
+
+The home portal has two working modes: **Recommender** maps a product or tender description to primary and allied standards, while **Procurement Chat** provides conversational guidance, compliance analysis, laboratory search, and document assistance.
 
 ### What Problem Does It Solve?
 Indian technical standards, Quality Control Orders (QCOs), certification schemes (ISI Mark, CRS, Hallmark), and laboratory testing guidelines are dense, multi-page statutory documents. For micro, small, and medium enterprises (MSMEs), startups, importers, and consumers, navigating these regulations is often overwhelming, slow, and prone to costly non-compliance penalties.
@@ -22,7 +24,7 @@ Indian technical standards, Quality Control Orders (QCOs), certification schemes
 
 ---
 
-### Feature 1: AI Regulatory Copilot & Conversational Search (Home Portal)
+### Feature 1: D.A.R.P.A.N Procurement Recommender & Conversational Search (Home Portal)
 
 The central conversational AI agent answers technical regulatory queries, identifies applicable Indian Standards (IS), and guides users through certification procedures.
 
