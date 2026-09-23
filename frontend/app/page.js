@@ -72,20 +72,20 @@ function SIHEvaluatorModal({ isOpen, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-2xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden text-slate-800 dark:text-slate-100 my-auto"
+          className="evaluator-modal relative w-full max-w-2xl bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden text-slate-800 dark:text-slate-100 my-auto"
         >
           {/* Header Banner */}
-          <div className="relative bg-linear-to-r from-[#003366] via-[#0055A4] to-[#0284c7] text-white p-5 sm:p-6 pb-5">
+          <div className="evaluator-modal-header relative bg-linear-to-r from-[#003366] via-[#0055A4] to-[#0284c7] text-white p-5 sm:p-6 pb-5">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-white text-[10px] font-bold uppercase tracking-wider mb-2 border border-white/20">
-                  <span className="text-amber-300">{Icons.shield}</span> Smart India Hackathon (SIH) — Problem Statement
+                <div className="evaluator-modal-badge inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-white text-[10px] font-bold uppercase tracking-wider mb-2">
+                  <span className="text-amber-300">{Icons.shield}</span> Platform Overview
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
-                  AI-Powered Recommendation Engine for Applicable Indian Standards in Procurement
+                  D.A.R.P.A.N for standards-led procurement
                 </h3>
                 <p className="text-xs text-blue-100 mt-1 leading-relaxed">
-                  D.A.R.P.A.N identifies applicable Indian Standards (IS), normative references, latest amendments, and generates technical tender clauses for procurement officials.
+                  Digital Advanced Recommendation for Procurement and Allied Norms connects product descriptions and tender requirements to applicable Indian Standards, certification paths, testing evidence, and procurement-ready outputs.
                 </p>
               </div>
               <button
@@ -100,58 +100,58 @@ function SIHEvaluatorModal({ isOpen, onClose }) {
 
           {/* Body Content */}
           <div className="p-5 sm:p-6 space-y-4 max-h-[60vh] overflow-y-auto text-xs">
-            {/* Ground Truth & Dataset */}
+            {/* Standards foundation */}
             <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#151e33] border border-slate-200 dark:border-slate-800 space-y-1.5">
               <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-white text-xs">
                 <span className="text-emerald-600 dark:text-emerald-400">{Icons.check}</span>
-                <span>100% Verified Regulatory Ground-Truth Data</span>
+                <span>Source-grounded standards intelligence</span>
               </div>
               <p className="text-slate-600 dark:text-slate-300 text-[11.5px] leading-relaxed">
-                All Indian Standards specifications (<span className="font-semibold text-slate-800 dark:text-slate-200">IS 14543, IS 10500, IS 16102, IS 1786, IS 9873</span>), statutory parameter tolerance limits, testing rules, Scheme-I/II workflows, and MSME fee structures are <strong>completely authentic and sourced directly from official Bureau of Indian Standards (BIS) publications and Gazette notifications</strong>.
+                D.A.R.P.A.N works with a curated BIS standards corpus covering domains such as water, lighting, steel, toys, jewellery, and EV batteries. Recommendations surface standards, allied references, amendments, certification schemes, testing requirements, and source context for review against current official publications.
               </p>
             </div>
 
-            {/* Custom Database & RAG Pipeline Reason */}
+            {/* Architecture */}
             <div className="p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 space-y-1.5">
               <div className="flex items-center gap-2 font-bold text-amber-900 dark:text-amber-200 text-xs">
                 <span className="text-amber-600 dark:text-amber-400">{Icons.alert}</span>
-                <span>Custom-Engineered Vector Database & Knowledge Graph</span>
+                <span>Independent retrieval and advisory pipeline</span>
               </div>
               <p className="text-amber-800 dark:text-amber-300 text-[11.5px] leading-relaxed">
-                Since the <strong>Bureau of Indian Standards does NOT provide any open public REST/GraphQL APIs</strong> for developers, our team built an independent end-to-end vector pipeline (FastEmbed <code className="px-1 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 font-mono text-[10px]">BAAI/bge-small-en-v1.5</code>) and relational schemas directly from raw standards documentation, Manakonline fee schedules, and ILMS lab datasets.
+                The platform combines FastEmbed semantic retrieval, structured procurement logic, backend tool execution, and a FastAPI service. It can work with local processed standards data and configured Supabase sources while keeping recommendations traceable and reviewable.
               </p>
             </div>
 
-            {/* Key Innovations To Evaluate */}
+            {/* Capabilities */}
             <div className="space-y-2">
               <h4 className="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
                 <span className="text-[#0055A4] dark:text-sky-400">{Icons.zap}</span>
-                <span>Core Capabilities Matching SIH Problem Statement</span>
+                <span>Core D.A.R.P.A.N capabilities</span>
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.search} AI Standards Recommendation</span>
-                  <span className="text-slate-500 dark:text-slate-400">Semantic similarity search across 1,805+ IS codes with relevance scoring.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Matches product and tender language to primary and allied IS codes with relevance scoring.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.globe} Normative & Allied Standards Graph</span>
-                  <span className="text-slate-500 dark:text-slate-400">Identifies reference test methods, material specs, and safety standards.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Maps normative references, test methods, safety standards, and related specifications.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.file} Tender Specification Generator</span>
-                  <span className="text-slate-500 dark:text-slate-400">Synthesizes ready-to-use tender specification clauses and pre-qualification criteria.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Produces ready-to-use tender clauses and pre-qualification criteria for committees.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.brain} Procurement Advisory Chatbot</span>
-                  <span className="text-slate-500 dark:text-slate-400">Conversational AI assistant for procurement officers drafting technical bids and GeM specs.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Answers procurement questions and supports technical bid and GeM specification drafting.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.doc} Formal PDF Procurement Report</span>
-                  <span className="text-slate-500 dark:text-slate-400">One-click downloadable technical evaluation report for tender documentation.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Generates procurement recommendations, compliance readiness, and fee quotation PDFs.</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-[#151e33] border border-slate-200/80 dark:border-slate-800">
                   <span className="font-semibold text-slate-900 dark:text-white block mb-0.5 flex items-center gap-1.5">{Icons.globe} Multilingual Procurement Support</span>
-                  <span className="text-slate-500 dark:text-slate-400">Full multilingual query and output support in English, Hindi, Tamil, and Bengali.</span>
+                  <span className="text-slate-500 dark:text-slate-400">Supports English, Hindi, Tamil, and Bengali, plus plain-language explanations.</span>
                 </div>
               </div>
             </div>
